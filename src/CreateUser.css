@@ -17,17 +17,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 .Input-name-create,
 .Input-email-create,
 .Input-password-create {
   width: 150px;
   display: flex;
-  justify-content: start;
   align-items: center;
-  
-
 }
 
 .Button-register {
