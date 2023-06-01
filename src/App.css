@@ -1,7 +1,7 @@
 :root {
-  --violeta: #480b3E;
-  --rosa: #BC1E51;
-  --amarillo: #F1B813;
+  --violeta: rgb(72, 11, 62);
+  --rosa: rgb(188, 30, 81);
+  --amarillo: rgb(241, 184, 19);
   --beige: rgb(248, 206, 213);
 }
 

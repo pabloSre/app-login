@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import './CreateUser.css';
+import { GrMail } from 'react-icons/gr';
+import {BsFillPersonLinesFill} from 'react-icons/bs';
+import {RiLockPasswordFill} from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 
 function CreateUser() {
 
@@ -21,9 +25,9 @@ function CreateUser() {
 <div className='Container-form'>
       
       <form onSubmit={sendSubmit} className='Form-create-user'>
-      <h2 className='Title-create-user'>Create user !</h2>
+      <h2 className='Title-create-user'>SING UP</h2>
         <label className='Label-name-create'>
-          Name:
+        <BsFillPersonLinesFill/>Name:
           <input
             type="text"
             value={name}
@@ -32,8 +36,8 @@ function CreateUser() {
           />
         </label>
         <br />
-        <label className='Label-email-create'>
-          Email:
+        <label className='Label-email-create'  >
+        <GrMail/>Email: 
           <input
             type="email"
             value={email}
@@ -43,7 +47,7 @@ function CreateUser() {
         </label>
         <br />
         <label className='Label-password-create'>
-          Password:
+        <RiLockPasswordFill/>Password:
           <input
             type="password"
             value={password}
@@ -54,8 +58,9 @@ function CreateUser() {
         <br />
         <button type="submit"
         className='Button-register'
-        >Registrarse
+        >CHECK IN
         </button>
+        <p className='Link-login'>¿Do you already have an account? <Link to="/" className='Link-log'>Log in</Link></p>
       </form>
     </div>
   );
