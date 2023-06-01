@@ -3,10 +3,14 @@
   justify-content: center;
   align-items: center;
   width: auto;
-  height: 100vh;
+  margin-top: 40px;
+  height: 800px;
 }
 .Form-create-user {
   width: 300px;
+  border: 1px solid black;
+  padding: 40px 50px 40px 50px;
+  border-radius: 20px;
 }
 .Title-create-user {
   margin-top: 20px;
