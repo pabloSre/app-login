@@ -45,7 +45,13 @@ label {
   border-left: none;
   border-color:rgb(248, 206, 213, 0.3);
   color: var(--amarillo);
-  
+}
+.Input-name-create:focus,
+.Input-email-create:focus,
+.Input-password-create:focus {
+  outline-color: rgb(248 206 213 / 64%);
+  outline-style: solid;
+  outline-width: thin;
 }
 
 .Button-register {
