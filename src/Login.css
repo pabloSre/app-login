@@ -1,11 +1,19 @@
 .Container-form-login {
-  
-}
-
-.Form-login {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 500px;
+  width: auto;
   height: 100vh;
+}
+
+.Form-login {
+  width: 300px;
 };
+
+.Title-login {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

@@ -23,8 +23,10 @@ const Login = () => {
 
   return (
     <div className='Container-form-login'>
+      
     <form className='Form-login' >
       <h1 className='Title-login'>Login</h1>
+      <label className='Label-user-login' >
       <input 
         onSubmit={handleSubmit} 
         type="text" 
@@ -32,13 +34,15 @@ const Login = () => {
         value={username} 
         onChange={handleUsernameChange}
         className='Input-user-name'/>
-      
+      </label>
+      <label className='Label-password-login' >
       <input 
         type="password"
         placeholder="Contraseña"
         value={password}
         onChange={handlePasswordChange}
         className='Input-password'/>
+        </label>
       <button type="submit" className='Button-sesion'>Iniciar sesión</button>
       <p className='Link-register'>¿No tienes una cuenta? <Link to="/register">Registrarse</Link></p>
     </form>
