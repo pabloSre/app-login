@@ -2,12 +2,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: auto;
   height: 100vh;
 }
 
 .Form-login {
   width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid black;
+  padding: 40px 50px 40px 50px;
+  border-radius: 20px;
+  align-items: center;
 };
 
 .Title-login {
@@ -16,4 +22,43 @@
   justify-content: center;
   align-items: center;
 }
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+.Label-user-login,
+.Label-password-login {
+  width: 300px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.Input-user-name,
+.Input-password {
+  width: 300px;
+  display: flex;
+  background-color: transparent;
+  align-items: center;
+  border-style: double;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+.Input-user-name,
+.Input-password:focus {
+    outline-color: rgb(248 206 213 / 64%);
+    outline-style: solid;
+    outline-width: thin;
+
+}
+
+.Button-sesion {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 

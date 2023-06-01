@@ -20,8 +20,8 @@ function CreateUser() {
   return (
 <div className='Container-form'>
       
-      <form onSubmit={sendSubmit} className='Form-create-user'>
-      <h2 className='Title-create-user'>Create user !</h2>
+  <form onSubmit={sendSubmit} className='Form-create-user'>
+    <h2 className='Title-create-user'>Create user !</h2>
         <label className='Label-name-create'>
           Name:
           <input
