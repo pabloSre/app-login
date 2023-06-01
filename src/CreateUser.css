@@ -3,8 +3,7 @@
   justify-content: center;
   align-items: center;
   width: auto;
-  margin-top: 40px;
-  height: 800px;
+  height: 100vh;
 }
 .Form-create-user {
   width: 300px;

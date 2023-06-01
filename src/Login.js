@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { BsPersonCircle } from 'react-icons/bs'
+import { GrMail } from 'react-icons/gr';
+import {RiLockPasswordFill} from 'react-icons/ri';
 import './Login.css';
 
 const Login = () => {
@@ -26,9 +29,13 @@ const Login = () => {
     <div className='Container-form-login'>
 
       <form className='Form-login' >
-        <h1 className='Title-login'>Login</h1>
+      <span className='Icon-person'>
+      <BsPersonCircle className='Icon-person-svg'/>
+      </span>
+        <h2 className='Title-login'>LOGIN</h2>
 
         <label className='Label-user-login' >
+        <GrMail/>
           <input 
             onSubmit={handleSubmit} 
             type="text" 
@@ -37,8 +44,9 @@ const Login = () => {
             onChange={handleUsernameChange}
             className='Input-user-name'/>
         </label>
-
+        <br />
         <label className='Label-password-login' >
+        <RiLockPasswordFill/>
           <input 
             type="password"
             placeholder="Password"
@@ -50,8 +58,8 @@ const Login = () => {
 
         <button 
         type="submit" 
-        className='Button-sesion'>Log in</button>
-        <p className='Link-register'>¿You do not have an account? <Link to="/register" className='Link-register-link'>Registrarse</Link></p>
+        className='Button-sesion'>LOG IN</button>
+        <p className='Link-register'>¿You do not have an account? <Link to="/register" className='Link-register-link'>Sign Up</Link></p>
       </form>
     </div>
   )
