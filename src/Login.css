@@ -1,7 +1,11 @@
-.form-login {
+.Container-form-login {
+  
+}
+
+.Form-login {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: auto;
-  height: 500px;
+  width: 500px;
+  height: 100vh;
 };
