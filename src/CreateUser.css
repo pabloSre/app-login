@@ -1,0 +1,22 @@
+.Container-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 500px;
+}
+.Title-create-user {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.label-name-create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+}
+.Input-name-create {
+  width: 200px;
+}
