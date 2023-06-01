@@ -11,12 +11,28 @@
   justify-content: center;
   align-items: center;
 }
-.label-name-create {
+.Label-name-create,
+.Label-email-create,
+.Label-password-create {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 400px;
+
 }
-.Input-name-create {
-  width: 200px;
+.Input-name-create,
+.Input-email-create,
+.Input-password-create {
+  width: 150px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  
+
+}
+
+.Button-register {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -52,7 +52,10 @@ function CreateUser() {
           />
         </label>
         <br />
-        <button type="submit" className='Button-register'>Registrarse</button>
+        <button type="submit"
+        className='Button-register'
+        >Registrarse
+        </button>
       </form>
     </div>
   );
