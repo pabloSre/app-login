@@ -3,7 +3,10 @@
   justify-content: center;
   align-items: center;
   width: auto;
-  height: 500px;
+  height: 100vh;
+}
+.Form-create-user {
+  width: 300px;
 }
 .Title-create-user {
   margin-top: 20px;
@@ -11,12 +14,16 @@
   justify-content: center;
   align-items: center;
 }
+label {
+  display: block;
+  margin-bottom: 5px;
+}
 .Label-name-create,
 .Label-email-create,
 .Label-password-create {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
 }
 .Input-name-create,
 .Input-email-create,
