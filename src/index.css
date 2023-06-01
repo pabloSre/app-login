@@ -3,14 +3,11 @@ body {
   font-family: 'Work Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgb(250,209,215);
-  background: radial-gradient(circle,
-  rgba(250,209,215,1) 0%,
-  rgba(188,30,81,1) 63%, 
-  rgba(73,11,62,1) 95%);
+  background: #093028;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FAD1d7, #BC1E51);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #BC1E51, #480b3E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Work Sans', sans-serif
 }
