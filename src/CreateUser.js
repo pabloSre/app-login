@@ -18,9 +18,10 @@ function CreateUser() {
 
 
   return (
-<div>
-      <h2 className='Title-create-user'>Create user !</h2>
+<div className='Container-form'>
+      
       <form onSubmit={sendSubmit} className='Form-create-user'>
+      <h2 className='Title-create-user'>Create user !</h2>
         <label className='Label-name-create'>
           Name:
           <input
@@ -51,7 +52,10 @@ function CreateUser() {
           />
         </label>
         <br />
-        <button type="submit" className='Button-register'>Registrarse</button>
+        <button type="submit"
+        className='Button-register'
+        >Registrarse
+        </button>
       </form>
     </div>
   );

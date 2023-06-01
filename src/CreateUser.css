@@ -1,0 +1,38 @@
+.Container-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 500px;
+}
+.Title-create-user {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Label-name-create,
+.Label-email-create,
+.Label-password-create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.Input-name-create,
+.Input-email-create,
+.Input-password-create {
+  width: 150px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  
+
+}
+
+.Button-register {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
