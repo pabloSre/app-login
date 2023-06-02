@@ -11,9 +11,10 @@ function BluetoothSearchTab() {
     setError(null);
 
     try {
-      const device = await navigator.bluetooth.requestDevice({
-        acceptAllDevices: true,
-      });
+        const device = await navigator.bluetooth.requestDevice({
+          acceptAllDevices: false,
+          filters: [{ services: ['keyboard'] }],
+        });
 
       setDevices([device]);
     } catch (error) {
@@ -34,14 +35,18 @@ function BluetoothSearchTab() {
       {error && <p>Error: {error.message}</p>}
 
       {devices.length > 0 ? (
-        <ul>
-          {devices.map((device, index) => (
-            <li key={index}>{device.name}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No se encontraron dispositivos Bluetooth.</p>
-      )}
+      <ul>
+        {devices.map((device, index) => (
+          <li key={index}>
+            <strong>Nombre:</strong> {device.name}<br/>
+            <strong>Dirección MAC:</strong> {device.id}<br/>
+            {/* Otros detalles del dispositivo */}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>No se encontraron dispositivos Bluetooth.</p>
+    )}
     </div>
   );
 }
