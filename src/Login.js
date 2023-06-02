@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { BsPersonCircle } from 'react-icons/bs'
+import { GrMail } from 'react-icons/gr';
+import {RiLockPasswordFill} from 'react-icons/ri';
+import './Login.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -22,26 +26,42 @@ const Login = () => {
   };
 
   return (
-    <form className='form-login' >
-      <h1 className='title'>Login</h1>
-      <input 
-        onSubmit={handleSubmit} 
-        type="text" 
-        placeholder="Nombre de usuario" 
-        value={username} 
-        onChange={handleUsernameChange}
-        className='input-user-name'/>
-      
-      <input 
-        type="password"
-        placeholder="Contraseña"
-        value={password}
-        onChange={handlePasswordChange}
-        className='input-password'/>
-      <button type="submit" className='button-sesion'>Iniciar sesión</button>
-      <p>¿No tienes una cuenta? <Link to="/register">Registrarse</Link></p>
-    </form>
+    <div className='Container-form-login'>
 
+      <form className='Form-login' >
+      <span className='Icon-person'>
+      <BsPersonCircle className='Icon-person-svg'/>
+      </span>
+        <h2 className='Title-login'>LOGIN</h2>
+
+        <label className='Label-user-login' >
+        <GrMail/>
+          <input 
+            onSubmit={handleSubmit} 
+            type="text" 
+            placeholder="User name" 
+            value={username} 
+            onChange={handleUsernameChange}
+            className='Input-user-name'/>
+        </label>
+        <br />
+        <label className='Label-password-login' >
+        <RiLockPasswordFill/>
+          <input 
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={handlePasswordChange}
+            className='Input-password'/>
+          </label>
+
+
+        <button 
+        type="submit" 
+        className='Button-sesion'>LOG IN</button>
+        <p className='Link-register'>¿You do not have an account? <Link to="/register" className='Link-register-link'>Sign Up</Link></p>
+      </form>
+    </div>
   )
 }
 

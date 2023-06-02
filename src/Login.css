@@ -1,7 +1,93 @@
-.form-login {
+.Container-form-login {
   display: flex;
   justify-content: center;
   align-items: center;
   width: auto;
-  height: 500px;
+  height: 100vh;
+}
+.Title-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 100;
+  font-size: 35px;
+  border-bottom: 1px solid black;
+  width: 300px;
+}
+.Form-login {
+  width: 300px;
+  border: 1px solid rgb(241, 184, 19, 0.5);
+  background-color:rgb(248, 206, 213, 0.1);
+  padding: 30px 50px 30px 50px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 };
+.Icon-person {
+  width: 80px;
+  height: 80px;
+}
+.Icon-person-svg {
+  width: 80px;
+  height: 80px;
+}
+label {
+  display: flex;
+
+}
+.Label-user-login,
+.Label-password-login {
+  width: 280px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.Input-user-name,
+.Input-password {
+  width: 250px;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border-style: double;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-color:rgb(248, 206, 213, 0.3);
+  color: var(--amarillo);
+  margin-bottom: 10px;
+}
+
+.Input-user-name:focus,
+.Input-password:focus {
+  outline-color: rgb(248 206 213 / 64%);
+  outline-style: solid;
+  outline-width: thin;
+}
+
+.Button-sesion {
+  height: 40px;
+  border-radius: 10px;
+  border-style: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(248, 206, 213, 0.3);
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+.Link-register {
+  width: 300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.Link-register-link {
+  display: flex;
+  justify-content:center;
+  color: var(--amarillo);
+}
+
