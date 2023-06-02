@@ -6,14 +6,15 @@ function BluetoothSearchTab() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleSearch = async () => {
+  const handleSearch = async (e) => {
+    e.preventDefault();
     setIsLoading(true);
     setError(null);
 
     try {
         const device = await navigator.bluetooth.requestDevice({
-          acceptAllDevices: false,
-          filters: [{ services: ['keyboard'] }],
+          acceptAllDevices: true,/* false, */
+          /* filters: [{ services: ['keyboard'] }], */
         });
 
       setDevices([device]);
