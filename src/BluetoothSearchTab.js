@@ -32,6 +32,7 @@ function BluetoothSearchTab() {
   };
 
   const sendData = async () => {
+    e.preventDefault();
     if (!device || !characteristic) return;
 
     const encoder = new TextEncoder();
@@ -46,6 +47,7 @@ function BluetoothSearchTab() {
   };
 
   const receiveData = async () => {
+    e.preventDefault();
     if (!device || !characteristic) return;
 
     try {
