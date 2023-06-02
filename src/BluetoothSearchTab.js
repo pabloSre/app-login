@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './BluetoothSearchTab.css'
+import './BluetoothSearchTab.css';
 
 function BluetoothSearchTab() {
   const [devices, setDevices] = useState([]);
@@ -16,22 +16,24 @@ function BluetoothSearchTab() {
     setError(null);
 
     try {
-        const device = await navigator.bluetooth.requestDevice({
-          acceptAllDevices: true,/* false, */
-          /* filters: [{ services: ['keyboard'] }], */
-        });
+      const device = await navigator.bluetooth.requestDevice({
+        acceptAllDevices: true,
+      });
 
-        setDevices([device]);
-        setDevice(device);
-        setCharacteristic(characteristic);
-      } catch (error) {
-        setError(error);
-      }
+      const service = await device.gatt.getPrimaryService(service_uuid);
+      const characteristic = await service.getCharacteristic(characteristic_uuid);
+
+      setDevices([device]);
+      setDevice(device);
+      setCharacteristic(characteristic);
+    } catch (error) {
+      setError(error);
+    }
 
     setIsLoading(false);
   };
 
-  const sendData = async () => {
+  const sendData = async (e) => {
     e.preventDefault();
     if (!device || !characteristic) return;
 
@@ -46,7 +48,7 @@ function BluetoothSearchTab() {
     }
   };
 
-  const receiveData = async () => {
+  const receiveData = async (e) => {
     e.preventDefault();
     if (!device || !characteristic) return;
 
@@ -73,28 +75,27 @@ function BluetoothSearchTab() {
       {error && <p>Error: {error.message}</p>}
 
       {devices.length > 0 ? (
-      <div>
-      <ul>
-        {devices.map((device, index) => (
-          <li key={index}>
-            <strong>Nombre:</strong> {device.name}<br/>
-            <strong>Dirección MAC:</strong> {device.id}<br/>
-            {/* Otros detalles del dispositivo */}
-          </li>
-        ))}
-      </ul>
+        <div>
+          <ul>
+            {devices.map((device, index) => (
+              <li key={index}>
+                <strong>Nombre:</strong> {device.name}<br/>
+                <strong>Dirección MAC:</strong> {device.id}<br/>
+                {/* Otros detalles del dispositivo */}
+              </li>
+            ))}
+          </ul>
 
-      <button onClick={sendData}>Enviar datos</button>
-      <button onClick={receiveData}>Recibir datos</button>
+          <button onClick={sendData}>Enviar datos</button>
+          <button onClick={receiveData}>Recibir datos</button>
 
-      {receivedData && <p>Received data: {receivedData}</p>}
+          {receivedData && <p>Received data: {receivedData}</p>}
+        </div>
+      ) : (
+        <p>No se encontraron dispositivos Bluetooth.</p>
+      )}
     </div>
-  ) : (
-    <p>No se encontraron dispositivos Bluetooth.</p>
-  )}
-</div>
-);
+  );
 }
-
 
 export default BluetoothSearchTab;
