@@ -1,10 +1,14 @@
-import React, { useState, useEffect} from "react";
+import React, { useState } from "react";
 import './BluetoothSearchTab.css'
 
 function BluetoothSearchTab() {
   const [devices, setDevices] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const [device, setDevice] = useState(null);
+  const [characteristic, setCharacteristic] = useState(null);
+  const [receivedData, setReceivedData] = useState("");
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -17,12 +21,43 @@ function BluetoothSearchTab() {
           /* filters: [{ services: ['keyboard'] }], */
         });
 
-      setDevices([device]);
-    } catch (error) {
-      setError(error);
-    }
+        setDevices([device]);
+        setDevice(device);
+        setCharacteristic(characteristic);
+      } catch (error) {
+        setError(error);
+      }
 
     setIsLoading(false);
+  };
+
+  const sendData = async () => {
+    if (!device || !characteristic) return;
+
+    const encoder = new TextEncoder();
+    const data = encoder.encode("Hello, Bluetooth!");
+
+    try {
+      await characteristic.writeValue(data);
+      console.log("Data sent successfully.");
+    } catch (error) {
+      console.error("Error sending data:", error);
+    }
+  };
+
+  const receiveData = async () => {
+    if (!device || !characteristic) return;
+
+    try {
+      const value = await characteristic.readValue();
+      const decoder = new TextDecoder();
+      const receivedText = decoder.decode(value);
+
+      setReceivedData(receivedText);
+      console.log("Received data:", receivedText);
+    } catch (error) {
+      console.error("Error receiving data:", error);
+    }
   };
 
   return (
@@ -36,6 +71,7 @@ function BluetoothSearchTab() {
       {error && <p>Error: {error.message}</p>}
 
       {devices.length > 0 ? (
+      <div>
       <ul>
         {devices.map((device, index) => (
           <li key={index}>
@@ -45,11 +81,17 @@ function BluetoothSearchTab() {
           </li>
         ))}
       </ul>
-    ) : (
-      <p>No se encontraron dispositivos Bluetooth.</p>
-    )}
+
+      <button onClick={sendData}>Enviar datos</button>
+      <button onClick={receiveData}>Recibir datos</button>
+
+      {receivedData && <p>Received data: {receivedData}</p>}
     </div>
-  );
+  ) : (
+    <p>No se encontraron dispositivos Bluetooth.</p>
+  )}
+</div>
+);
 }
 
 
