@@ -3,9 +3,9 @@ import { v4 as uuidv4 } from "uuid";
 import './BluetoothSearchTab.css';
 
 function BluetoothSearchTab() {
-  const [devices, setDevices] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isSearchPerformed, setIsSearchPerformed] = useState(false);
 
   const [device, setDevice] = useState(null);
   const [characteristic, setCharacteristic] = useState(null);
@@ -15,22 +15,21 @@ function BluetoothSearchTab() {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
+    setIsSearchPerformed(true);
 
-    const customServiceUUID = uuidv4(); // Generar un UUID personalizado para el servicio
-    const customCharacteristicUUID = uuidv4(); // Generar un UUID personalizado para la característica
+    const customServiceUUID = uuidv4();
+    const customCharacteristicUUID = uuidv4();
 
     try {
-      const selectedDevice = await navigator.bluetooth.requestDevice({
+      const device = await navigator.bluetooth.requestDevice({
         acceptAllDevices: true,
         optionalServices: [customServiceUUID],
       });
 
-      const server = await selectedDevice.gatt.connect();
-      const service = await server.getPrimaryService(customServiceUUID);
+      const service = await device.gatt.getPrimaryService(customServiceUUID);
       const characteristic = await service.getCharacteristic(customCharacteristicUUID);
 
-      setDevices([selectedDevice]);
-      setDevice(selectedDevice);
+      setDevice(device);
       setCharacteristic(characteristic);
     } catch (error) {
       setError(error);
@@ -70,39 +69,44 @@ function BluetoothSearchTab() {
     }
   };
 
-
   return (
-    <div>
-    <h2>Buscar dispositivos Bluetooth</h2>
+    <div className="Search-device">
+      <h2 className="Search">Search devices Bluetooth</h2>
 
-    <button onClick={handleSearch}>Buscar</button>
+      <button className="Button-search" onClick={handleSearch}>
+        Search
+      </button>
 
-    {isLoading && <p>Cargando...</p>}
+      {isLoading && <p>Loading...</p>}
 
-    {error && <p>Error: {error.message}</p>}
+      {error && <p className="Error-adapter">Error: {error.message}</p>}
 
-    {devices.length > 0 ? (
-      <div>
-        <ul>
-          {devices.map((device, index) => (
-            <li key={index}>
-              <strong>Nombre:</strong> {device.name}<br/>
-              <strong>Dirección MAC:</strong> {device.id}<br/>
-              {/* Otros detalles del dispositivo */}
+      {isSearchPerformed && device && characteristic ? (
+        <div>
+          <ul>
+            <li>
+              <strong>Name:</strong> {device.name}<br/>
+              <strong>MAC Address:</strong> {device.id}<br/>
+              {/* Other device details */}
             </li>
-          ))}
-        </ul>
+          </ul>
 
-        <button onClick={sendData}>Enviar datos</button>
-        <button onClick={receiveData}>Recibir datos</button>
+          <button className="Send-data" onClick={sendData}>
+            Send data
+          </button>
+          <button className="Receive-data" onClick={receiveData}>
+            Receive data
+          </button>
 
-        {receivedData && <p>Received data: {receivedData}</p>}
-      </div>
-    ) : (
-      <p>No se encontraron dispositivos Bluetooth.</p>
-    )}
-  </div>
+          {receivedData && <p>Received data: {receivedData}</p>}
+        </div>
+      ) : isSearchPerformed ? (
+        <p className="Error-blue">No Bluetooth devices found.</p>
+      ) : null}
+    </div>
   );
 }
+
+export default BluetoothSearchTab;
 
 export default BluetoothSearchTab;
