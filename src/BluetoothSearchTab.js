@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import './BluetoothSearchTab.css';
 
 function BluetoothSearchTab() {
@@ -15,14 +16,18 @@ function BluetoothSearchTab() {
     setIsLoading(true);
     setError(null);
 
+    const customServiceUUID = uuidv4(); // Generar un UUID personalizado para el servicio
+    const customCharacteristicUUID = uuidv4(); // Generar un UUID personalizado para la característica
+
     try {
       const device = await navigator.bluetooth.requestDevice({
         acceptAllDevices: true,
+        optionalServices: [customServiceUUID],
       });
-/* 
-      const service = await device.gatt.getPrimaryService(service_uuid);
-      const characteristic = await service.getCharacteristic(characteristic_uuid);
- */
+
+      const service = await device.gatt.getPrimaryService(customServiceUUID);
+      const characteristic = await service.getCharacteristic(customCharacteristicUUID);
+
       setDevices([device]);
       setDevice(device);
       setCharacteristic(characteristic);
