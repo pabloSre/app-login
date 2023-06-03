@@ -20,16 +20,17 @@ function BluetoothSearchTab() {
     const customCharacteristicUUID = uuidv4(); // Generar un UUID personalizado para la característica
 
     try {
-      const device = await navigator.bluetooth.requestDevice({
+      const selectedDevice = await navigator.bluetooth.requestDevice({
         acceptAllDevices: true,
         optionalServices: [customServiceUUID],
       });
 
-      const service = await device.gatt.getPrimaryService(customServiceUUID);
+      const server = await selectedDevice.gatt.connect();
+      const service = await server.getPrimaryService(customServiceUUID);
       const characteristic = await service.getCharacteristic(customCharacteristicUUID);
 
-      setDevices([device]);
-      setDevice(device);
+      setDevices([selectedDevice]);
+      setDevice(selectedDevice);
       setCharacteristic(characteristic);
     } catch (error) {
       setError(error);
@@ -69,37 +70,38 @@ function BluetoothSearchTab() {
     }
   };
 
+
   return (
     <div>
-      <h2>Buscar dispositivos Bluetooth</h2>
+    <h2>Buscar dispositivos Bluetooth</h2>
 
-      <button onClick={handleSearch}>Buscar</button>
+    <button onClick={handleSearch}>Buscar</button>
 
-      {isLoading && <p>Cargando...</p>}
+    {isLoading && <p>Cargando...</p>}
 
-      {error && <p>Error: {error.message}</p>}
+    {error && <p>Error: {error.message}</p>}
 
-      {devices.length > 0 ? (
-        <div>
-          <ul>
-            {devices.map((device, index) => (
-              <li key={index}>
-                <strong>Nombre:</strong> {device.name}<br/>
-                <strong>Dirección MAC:</strong> {device.id}<br/>
-                {/* Otros detalles del dispositivo */}
-              </li>
-            ))}
-          </ul>
+    {devices.length > 0 ? (
+      <div>
+        <ul>
+          {devices.map((device, index) => (
+            <li key={index}>
+              <strong>Nombre:</strong> {device.name}<br/>
+              <strong>Dirección MAC:</strong> {device.id}<br/>
+              {/* Otros detalles del dispositivo */}
+            </li>
+          ))}
+        </ul>
 
-          <button onClick={sendData}>Enviar datos</button>
-          <button onClick={receiveData}>Recibir datos</button>
+        <button onClick={sendData}>Enviar datos</button>
+        <button onClick={receiveData}>Recibir datos</button>
 
-          {receivedData && <p>Received data: {receivedData}</p>}
-        </div>
-      ) : (
-        <p>No se encontraron dispositivos Bluetooth.</p>
-      )}
-    </div>
+        {receivedData && <p>Received data: {receivedData}</p>}
+      </div>
+    ) : (
+      <p>No se encontraron dispositivos Bluetooth.</p>
+    )}
+  </div>
   );
 }
 
