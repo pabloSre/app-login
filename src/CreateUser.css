@@ -81,3 +81,6 @@ label {
   color: var(--amarillo);
   
 }
+.Error-message {
+  color: var(--beige);
+}
