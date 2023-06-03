@@ -17,22 +17,23 @@ function BluetoothForm() {
     setIsOn(!isOn);
   };
 
-return (
-  <div className='Container-form-bluetooth'>
-    <form className="BluetoothForm">
-    <h1 className="Title-conection">
-      Bluetooth
-        <div 
-          className="On-off" 
-          onClick={handleClick}>
-          {isOn ? <BsToggleOn/> : <BsToggleOff/>}
-        </div>
-    </h1>
-    
-    <BluetoothSearchTab/>
-    </form>
-  </div>
-)
+  return (
+    <div className='Container-form-bluetooth'>
+      <form className="BluetoothForm">
+        <h1 className="Title-conection">
+          Bluetooth
+          <div 
+            className={`On-off ${isOn ? 'active' : ''}`} 
+            onClick={handleClick}
+          >
+            {isOn ? <BsToggleOn/> : <BsToggleOff/>}
+          </div>
+        </h1>
+      
+        {isOn && <BluetoothSearchTab />}
+      </form>
+    </div>
+  )
 }
 
 export default BluetoothForm;
