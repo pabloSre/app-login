@@ -106,7 +106,4 @@ function BluetoothSearchTab() {
     </div>
   );
 }
-
-export default BluetoothSearchTab;
-
 export default BluetoothSearchTab;
