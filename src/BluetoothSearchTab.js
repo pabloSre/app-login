@@ -70,14 +70,22 @@ function BluetoothSearchTab() {
   };
 
   return (
-    <div>
-      <h2>Buscar dispositivos Bluetooth</h2>
+    <div 
+      className="Search-device"
+      >
+      <h2
+      className="Search"
+      >
+        Search devices bluetooth
+      </h2>
 
-      <button onClick={handleSearch}>Buscar</button>
+      <button 
+      className="Button-search"
+      onClick={handleSearch}>Search</button>
 
       {isLoading && <p>Cargando...</p>}
 
-      {error && <p>Error: {error.message}</p>}
+      {error && <p className="Error-adapter">Error: {error.message}</p>}
 
       {devices.length > 0 ? (
         <div>
@@ -97,7 +105,7 @@ function BluetoothSearchTab() {
           {receivedData && <p>Received data: {receivedData}</p>}
         </div>
       ) : (
-        <p>No se encontraron dispositivos Bluetooth.</p>
+        <p  className="Error-blue">No se encontraron dispositivos Bluetooth.</p>
       )}
     </div>
   );

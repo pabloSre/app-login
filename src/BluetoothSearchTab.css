@@ -1,22 +1,47 @@
-.BluetoothSearchTab {
-  margin-top: 20px;
+.Search-device {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.BluetoothSearchTab h2 {
+.Search {
   font-size: 20px;
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Button-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  width: 200px;
+  padding: 10px 20px;
+  background-color: var(--beige);
+  color: var(--violeta);
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
 }
 
-.BluetoothSearchTab p {
-  margin: 0;
+.Button-search:hover {
+  background-color: var(--amarillo);
 }
 
-.BluetoothSearchTab ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
+.Error-adapter {
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--beige);
 }
-
-.BluetoothSearchTab li {
-  margin-bottom: 5px;
+.Error-blue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  color: var(--amarillo)
 }
