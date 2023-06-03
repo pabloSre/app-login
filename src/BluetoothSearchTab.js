@@ -73,13 +73,17 @@ function BluetoothSearchTab() {
     <div className="Search-device">
       <h2 className="Search">Search devices Bluetooth</h2>
 
-      <button className="Button-search" onClick={handleSearch}>
+      <button 
+      className="Button-search" 
+      onClick={handleSearch}>
         Search
       </button>
 
       {isLoading && <p>Loading...</p>}
 
-      {error && <p className="Error-adapter">Error: {error.message}</p>}
+      {error && <p 
+      className=
+      "Error-adapter">Error: {error.message}</p>}
 
       {isSearchPerformed && device && characteristic ? (
         <div>
@@ -91,10 +95,14 @@ function BluetoothSearchTab() {
             </li>
           </ul>
 
-          <button className="Send-data" onClick={sendData}>
+          <button 
+          className="Send-data" 
+          onClick={sendData}>
             Send data
           </button>
-          <button className="Receive-data" onClick={receiveData}>
+          <button 
+          className="Receive-data" 
+          onClick={receiveData}>
             Receive data
           </button>
 
