@@ -19,10 +19,10 @@ function BluetoothSearchTab() {
       const device = await navigator.bluetooth.requestDevice({
         acceptAllDevices: true,
       });
-
+/* 
       const service = await device.gatt.getPrimaryService(service_uuid);
       const characteristic = await service.getCharacteristic(characteristic_uuid);
-
+ */
       setDevices([device]);
       setDevice(device);
       setCharacteristic(characteristic);

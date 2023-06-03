@@ -1,24 +1,48 @@
 import React, { useState } from 'react';
 import './CreateUser.css';
+import axios from 'axios';
 import { GrMail } from 'react-icons/gr';
 import {BsFillPersonLinesFill} from 'react-icons/bs';
 import {RiLockPasswordFill} from 'react-icons/ri';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 function CreateUser() {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [signIn, setSignIn] = useState(false);
+  const [error, setError] = useState('');
 
-  const sendSubmit = (e) => {
+
+/*  const sendSubmit = (e) => {
     e.preventDefault();
     
     
     /* prevent default hace que no se recargue la pagina despues de enviar el form */
     // Aquí realizar alguna acción con los datos del formulario
-    // como enviarlos a un servidor
+    // como enviarlos a un servidor*/
+
+  const sendSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/api/v1/users', { email, password, name });
+      console.log('Sign response:', response.data);
+      setSignIn(true);
+    } catch (error) {
+      console.error('Error during login:', error);
+      setError({
+        messageEmail:'this email already exists',
+        messagePass: 'minimum 8 characters'
+      });
+    }
   };
+
+  if (signIn) {
+    return <Redirect to="/login" />;
+  }
+
 
 
   return (
@@ -61,6 +85,8 @@ function CreateUser() {
         >CHECK IN
         </button>
         <p className='Link-login'>¿Do you already have an account? <Link to="/" className='Link-log'>Log in</Link></p>
+        {error && <p>{error.messageEmail}</p>}
+        {error && <p>{error.messagePass}</p>}
       </form>
     </div>
   );
