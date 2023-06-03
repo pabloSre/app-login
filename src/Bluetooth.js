@@ -15,14 +15,19 @@ function BluetoothForm() {
 
   const handleClick = () => {
     setIsOn(!isOn);
+    console.log('cambio')
   };
 
 return (
-  <div className='Container-form-bluetooth'>
-    <form className="BluetoothForm">
-    <h1 className="Title-conection">
+  <div 
+    className='Container-form-bluetooth'>
+    <form 
+      className="BluetoothForm">
+    <h1 
+        className="Title-conection">
       Bluetooth
         <div 
+          
           className="On-off" 
           onClick={handleClick}>
           {isOn ? <BsToggleOn/> : <BsToggleOff/>}
@@ -32,6 +37,7 @@ return (
     <BluetoothSearchTab/>
     </form>
   </div>
+    
 )
 }
 
