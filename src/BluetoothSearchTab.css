@@ -45,3 +45,17 @@
   font-size: 15px;
   color: var(--amarillo)
 }
+
+.Receive-data,
+.Send-data {
+  border-radius: 15px;
+  border-style: none;
+  background-color: var(--beige);
+  color: var(--violeta);
+
+}
+
+.Receive-data:hover,
+.Send-data:hover {
+  background-color: var(--amarillo);
+}

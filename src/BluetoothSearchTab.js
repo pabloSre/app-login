@@ -3,9 +3,9 @@ import { v4 as uuidv4 } from "uuid";
 import './BluetoothSearchTab.css';
 
 function BluetoothSearchTab() {
-  const [devices, setDevices] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isSearchPerformed, setIsSearchPerformed] = useState(false);
 
   const [device, setDevice] = useState(null);
   const [characteristic, setCharacteristic] = useState(null);
@@ -15,9 +15,10 @@ function BluetoothSearchTab() {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
+    setIsSearchPerformed(true);
 
-    const customServiceUUID = uuidv4(); // Generar un UUID personalizado para el servicio
-    const customCharacteristicUUID = uuidv4(); // Generar un UUID personalizado para la característica
+    const customServiceUUID = uuidv4();
+    const customCharacteristicUUID = uuidv4();
 
     try {
       const device = await navigator.bluetooth.requestDevice({
@@ -28,7 +29,6 @@ function BluetoothSearchTab() {
       const service = await device.gatt.getPrimaryService(customServiceUUID);
       const characteristic = await service.getCharacteristic(customCharacteristicUUID);
 
-      setDevices([device]);
       setDevice(device);
       setCharacteristic(characteristic);
     } catch (error) {
@@ -70,43 +70,39 @@ function BluetoothSearchTab() {
   };
 
   return (
-    <div 
-      className="Search-device"
-      >
-      <h2
-      className="Search"
-      >
-        Search devices bluetooth
-      </h2>
+    <div className="Search-device">
+      <h2 className="Search">Search devices Bluetooth</h2>
 
-      <button 
-      className="Button-search"
-      onClick={handleSearch}>Search</button>
+      <button className="Button-search" onClick={handleSearch}>
+        Search
+      </button>
 
-      {isLoading && <p>Cargando...</p>}
+      {isLoading && <p>Loading...</p>}
 
       {error && <p className="Error-adapter">Error: {error.message}</p>}
 
-      {devices.length > 0 ? (
+      {isSearchPerformed && device && characteristic ? (
         <div>
           <ul>
-            {devices.map((device, index) => (
-              <li key={index}>
-                <strong>Nombre:</strong> {device.name}<br/>
-                <strong>Dirección MAC:</strong> {device.id}<br/>
-                {/* Otros detalles del dispositivo */}
-              </li>
-            ))}
+            <li>
+              <strong>Name:</strong> {device.name}<br/>
+              <strong>MAC Address:</strong> {device.id}<br/>
+              {/* Other device details */}
+            </li>
           </ul>
 
-          <button onClick={sendData}>Enviar datos</button>
-          <button onClick={receiveData}>Recibir datos</button>
+          <button className="Send-data" onClick={sendData}>
+            Send data
+          </button>
+          <button className="Receive-data" onClick={receiveData}>
+            Receive data
+          </button>
 
           {receivedData && <p>Received data: {receivedData}</p>}
         </div>
-      ) : (
-        <p  className="Error-blue">No se encontraron dispositivos Bluetooth.</p>
-      )}
+      ) : isSearchPerformed ? (
+        <p className="Error-blue">No Bluetooth devices found.</p>
+      ) : null}
     </div>
   );
 }
