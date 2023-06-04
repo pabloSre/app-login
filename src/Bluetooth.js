@@ -39,12 +39,7 @@ return (
         {isOn && <BluetoothSearchTab2 />}
       </form>
     </div>
-        </div>
-    </h1>
-      {isOn && <BluetoothSearchTab/>}
 
-    </form>
-  </div>
     
 )
 }
