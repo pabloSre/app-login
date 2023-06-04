@@ -16,6 +16,7 @@ function App() {
         <Route exact path="/" component={Login} />
         <Route path="/register" component={CreateUser} />
         <Route path="/bluetooth" component={BluetoothForm} />
+      
         
       </Switch>
 

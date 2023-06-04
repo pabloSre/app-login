@@ -13,7 +13,8 @@
   margin: 0 auto;
   background-color:rgb(248, 206, 213, 0.1);
   padding: 20px;
-  border: 1px solid var(--amarillo);
+  border: 2px solid rgb(241, 184, 19, 0.5);
+  border-radius: 10px;
 }
 
 .Title-conection {

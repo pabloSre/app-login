@@ -28,13 +28,14 @@ return (
       Bluetooth
         <div 
           
-          className="On-off" 
-          onClick={handleClick}>
-          {isOn ? <BsToggleOn/> : <BsToggleOff/>}
+          className={`On-off ${isOn ? 'active' : ''}` }
+          onClick={handleClick}
+          >
+            {isOn ? <BsToggleOn/> : <BsToggleOff/>}
         </div>
     </h1>
-    
-    <BluetoothSearchTab/>
+      {isOn && <BluetoothSearchTab/>}
+
     </form>
   </div>
     
