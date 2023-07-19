@@ -3,7 +3,6 @@ import './Bluetooth.css';
 import { Link } from "react-router-dom";
 import {BsToggleOff, BsToggleOn} from "react-icons/bs";
 import BluetoothSearchTab from './BluetoothSearchTab';
-import BluetoothSearchTab2 from './BluetoothSearchTab2';
 
 
 function BluetoothForm() {
@@ -36,7 +35,7 @@ return (
           </div>
         </h1>
       
-        {isOn && <BluetoothSearchTab2 />}
+        {isOn && <BluetoothSearchTab />}
       </form>
     </div>
 

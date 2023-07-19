@@ -26,17 +26,22 @@ function BluetoothSearchTab() {
         optionalServices: [customServiceUUID],
       });
 
-      const service = await device.gatt.getPrimaryService(customServiceUUID);
+      const server = await device.gatt.connect(); 
+
+      const service = await server.getPrimaryService(customServiceUUID);
       const characteristic = await service.getCharacteristic(customCharacteristicUUID);
 
       setDevice(device);
       setCharacteristic(characteristic);
     } catch (error) {
       setError(error);
+      setDevice(null);
+      setCharacteristic(null);
     }
 
     setIsLoading(false);
   };
+
 
   const sendData = async (e) => {
     e.preventDefault();
@@ -74,16 +79,19 @@ function BluetoothSearchTab() {
       <h2 className="Search">Search devices Bluetooth</h2>
 
       <button 
-      className="Button-search" 
-      onClick={handleSearch}>
+        className="Button-search" 
+        onClick={handleSearch}
+        disabled={isLoading} // Deshabilitar el botón de búsqueda durante la carga (no esta funcionando como quisiera)
+      >
         Search
       </button>
 
       {isLoading && <p>Loading...</p>}
+      {error && <p className="Error-adapter">Error: {error.message}</p>}
 
-      {error && <p 
-      className=
-      "Error-adapter">Error: {error.message}</p>}
+      {error && isSearchPerformed && !device ? (
+        <p className="Error-blue">No Bluetooth devices found.</p>
+      ) : null}
 
       {isSearchPerformed && device && characteristic ? (
         <div>
@@ -91,27 +99,21 @@ function BluetoothSearchTab() {
             <li>
               <strong>Name:</strong> {device.name}<br/>
               <strong>MAC Address:</strong> {device.id}<br/>
-              {/* Other device details */}
             </li>
           </ul>
 
-          <button 
-          className="Send-data" 
-          onClick={sendData}>
+          <button className="Send-data" onClick={sendData}>
             Send data
           </button>
-          <button 
-          className="Receive-data" 
-          onClick={receiveData}>
+          <button className="Receive-data" onClick={receiveData}>
             Receive data
           </button>
 
           {receivedData && <p>Received data: {receivedData}</p>}
         </div>
-      ) : isSearchPerformed ? (
-        <p className="Error-blue">No Bluetooth devices found.</p>
       ) : null}
     </div>
   );
 }
+
 export default BluetoothSearchTab;
